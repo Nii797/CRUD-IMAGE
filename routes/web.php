@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,3 +21,14 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+// ========================= EMPLOYEE =======================================
+Route::get('/employee','EmployeeController@index')->name('employee');
+Route::post('/addimage','EmployeeController@store')->name('addimage');
+Route::get('/employeepage','EmployeeController@display');
+Route::get('/editimage/{id}','EmployeeController@edit');
+Route::put('/updateimage/{id}','EmployeeController@update');
+Route::get('/deleteimage/{id}','EmployeeController@delete');
+
+// ========================= ARTIKEL ========================================
+Route::get('/artikelform','ArtikelFormController@index')->name('artikelform');
