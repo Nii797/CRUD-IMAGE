@@ -14,9 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Auth::routes();
 
@@ -32,3 +32,16 @@ Route::get('/deleteimage/{id}','EmployeeController@delete');
 
 // ========================= ARTIKEL ========================================
 Route::get('/artikelform','ArtikelFormController@index')->name('artikelform');
+Route::post('/addartikel','ArtikelFormController@store')->name('addartikel');
+Route::get('/artikelpage','ArtikelFormController@display');
+Route::get('/artikeledit/{id}','ArtikelFormController@edit');
+Route::put('/artikelupdate/{id}','ArtikelFormController@update');
+Route::get('/artikeldelete/{id}','ArtikelFormController@delete');
+
+
+
+// ========================= Isi Berita =====================================
+Route::get('/','ArtikelFormController@artikelnewsportal');
+Route::get('/updateartikel', function (){
+    return view('artikel.artikelupdate');
+});
