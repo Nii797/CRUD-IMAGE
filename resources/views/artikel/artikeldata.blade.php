@@ -14,7 +14,6 @@
 
     <div class="container">
             <h1>Data Artikel</h1><br>
-    </div>
 
     <div class="container">
         <div class="navbar">
@@ -22,15 +21,14 @@
                 <a href="{{ route('artikelform') }}" class="btn btn-primary">Add</a>
             </ul>
             <ul class="nav-item">
-                <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <form class="d-flex" method="GET" action="{{ url('/artikelsearch') }}">
+                    <input name="search" class="form-control me-2" type="search" placeholder="Search" aria-label="Search" value="{{ old('search') }}">
                     <button class="btn btn-primary" type="submit">Search</button>
                 </form>
             </ul>
         </div>
     </div>
 
-    <div class="container">
             @if(Session::has('success'))
             <div class="alert alert-success">
                 {{ Session::get('success') }}
@@ -70,6 +68,7 @@
                     @endforeach
                 </tbody>
               </table>
+
               {{ $artikels->links() }}
     </div>
 

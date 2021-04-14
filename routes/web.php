@@ -34,6 +34,7 @@ Route::get('/deleteimage/{id}','EmployeeController@delete');
 Route::get('/artikelform','ArtikelFormController@index')->name('artikelform');
 Route::post('/addartikel','ArtikelFormController@store')->name('addartikel');
 Route::get('/artikelpage','ArtikelFormController@display');
+Route::get('/artikelsearch','ArtikelFormController@search');
 Route::get('/artikeledit/{id}','ArtikelFormController@edit');
 Route::put('/artikelupdate/{id}','ArtikelFormController@update');
 Route::get('/artikeldelete/{id}','ArtikelFormController@delete');

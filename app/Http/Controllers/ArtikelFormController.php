@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\artikel;
+use App\Artikel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 
 class ArtikelFormController extends Controller
@@ -15,7 +16,6 @@ class ArtikelFormController extends Controller
 
     public function store(Request $request)
     {
-
         $request->validate([
             'title_artikel' => 'required',
             'description' => 'required',
@@ -49,11 +49,41 @@ class ArtikelFormController extends Controller
 
     public function display()
     {
+        // search
+        // if($request->has('search')){
+        //     // $artikels = Artikel::where('title_artikel','LIKE','%'.$request->search.'%')->get();
+        //     $artikels = Artikel::where('title_artikel','LIKE',"%{$request->search}%")->get();
+        //     // $artikels = Artikel::like('title-artikel')->get();
+        // }else{
+        //     $artikels = Artikel::all();
+        // }
+
+        // // search 2
+        // // Get the search value from the request
+        // $search = $request->input('search');
+
+        // // Search in the title and body columns from the posts table
+        // $artikels = Artikel::query()
+        //     ->where('title_artikel', 'LIKE', "%{$search}%")
+        //     ->orWhere('description', 'LIKE', "%{$search}%")
+        //     ->get();
+
         $artikels = Artikel::all();
         $artikels = Artikel::paginate(5);
 
         return view('artikel.artikeldata')
                 ->with('artikels',$artikels);
+    }
+
+    public function search(Request $request)
+    {
+        $search = $request->search;
+
+        $artikels = DB::table('artikel')
+            ->where('title_artikel','LIKE',"%".$search."%")
+            ->paginate();
+
+        return view('artikel.artikeldata',['artikels' => $artikels]);
     }
 
     public function edit($id)
