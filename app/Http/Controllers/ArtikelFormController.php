@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Artikel;
+use App\Logo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -138,6 +139,10 @@ class ArtikelFormController extends Controller
         $artikels = Artikel::all();
         $artikels = Artikel::paginate(3);
 
-        return view('artikel.berita')->with('artikels',$artikels);
+        $logos = Logo::all();
+
+        return view('artikel.berita')
+            ->with('artikels',$artikels)
+            ->with('logos',$logos);
     }
 }

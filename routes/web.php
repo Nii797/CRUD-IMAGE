@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,7 +40,10 @@ Route::get('/artikeledit/{id}','ArtikelFormController@edit');
 Route::put('/artikelupdate/{id}','ArtikelFormController@update');
 Route::get('/artikeldelete/{id}','ArtikelFormController@delete');
 
-
+// ========================= LOGO ============================================
+Route::get('/logoform','LogoController@index')->name('logoform');
+Route::post('/addlogo','LogoController@store')->name('addlogo');
+Route::get('/logodata','LogoController@display');
 
 // ========================= Isi Berita =====================================
 Route::get('/','ArtikelFormController@artikelnewsportal');
